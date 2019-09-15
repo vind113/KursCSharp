@@ -55,12 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\ShapeColors.cs" />
+    <Compile Include="Models\Colors.cs" />
+    <Compile Include="Models\Point.cs" />
     <Compile Include="Utils\DataParser.cs" />
     <Compile Include="Utils\FileDataReader.cs" />
     <Compile Include="ViewModels\Commands\Command.cs" />
-    <Compile Include="ViewModels\Commands\ShapeLineViewModel.cs" />
     <Compile Include="ViewModels\Converters\ColorConverter.cs" />
+    <Compile Include="ViewModels\LineViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -79,7 +80,6 @@
     <Compile Include="Models\Quadrilateral.cs" />
     <Compile Include="Models\Shape.cs" />
     <Compile Include="Models\ShapeLine.cs" />
-    <Compile Include="Models\ShapePoint.cs" />
     <Compile Include="Models\Triangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

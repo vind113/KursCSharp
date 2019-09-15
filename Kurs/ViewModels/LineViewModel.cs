@@ -1,17 +1,12 @@
 ﻿using Kurs.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kurs.ViewModels.Commands
 {
-    class ShapeLineViewModel
+    class LineViewModel
     {
-        private readonly ShapeLine inner;
+        private readonly Line inner;
 
-        public ShapeLineViewModel(ShapeLine line, ShapeColors color)
+        public LineViewModel(Line line, Colors color)
         {
             inner = line;
             this.Color = color;
@@ -22,6 +17,6 @@ namespace Kurs.ViewModels.Commands
         public double X2 => inner.End.X;
         public double Y2 => inner.End.Y;
 
-        public ShapeColors Color { get; }
+        public Colors Color { get; }
     }
 }

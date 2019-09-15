@@ -8,48 +8,48 @@ namespace Kurs.Models
 {
     class Quadrilateral : AbstractShape
     {
-        public Quadrilateral(ShapePoint a, ShapePoint b, ShapePoint c, ShapePoint d) : base(ShapeColors.Red)
+        public Quadrilateral(Point a, Point b, Point c, Point d) : base(Colors.Red)
         { 
-            ShapePoint localA = a;
-            ShapePoint localB = b;
-            ShapePoint localC = c;
-            ShapePoint localD = d;
+            Point localA = a;
+            Point localB = b;
+            Point localC = c;
+            Point localD = d;
 
-            ShapeLine firstLine = null;
-            ShapeLine secondLine = null;
-            ShapeLine thirdLine = null;
-            ShapeLine fourthLine = null;
+            Line firstLine = null;
+            Line secondLine = null;
+            Line thirdLine = null;
+            Line fourthLine = null;
 
             while (firstLine == null && thirdLine == null)
             {
-                ShapeLine firstTempLine = new ShapeLine(localA, localB);
-                ShapeLine thirdTempLine = new ShapeLine(localC, localD);
+                Line firstTempLine = new Line(localA, localB);
+                Line thirdTempLine = new Line(localC, localD);
                 if (!firstTempLine.Crosses(thirdTempLine))
                 {
-                    firstLine = new ShapeLine(localA, localB);
-                    thirdLine = new ShapeLine(localC, localD);
+                    firstLine = new Line(localA, localB);
+                    thirdLine = new Line(localC, localD);
                 }
                 else
                 {
-                    ShapePoint swapTemp = localB;
+                    Point swapTemp = localB;
                     localB = localC;
                     localC = localD;
                     localD = swapTemp;
                 }
             }
 
-            ShapeLine secondTempLine = new ShapeLine(localA, localC);
-            ShapeLine fourthTempLine = new ShapeLine(localB, localD);
+            Line secondTempLine = new Line(localA, localC);
+            Line fourthTempLine = new Line(localB, localD);
 
             if (!secondTempLine.Crosses(fourthTempLine))
             {
-                secondLine = new ShapeLine(localA, localC);
-                fourthLine = new ShapeLine(localB, localD);
+                secondLine = new Line(localA, localC);
+                fourthLine = new Line(localB, localD);
             }
             else
             {
-                secondLine = new ShapeLine(localB, localC);
-                fourthLine = new ShapeLine(localA, localD);
+                secondLine = new Line(localB, localC);
+                fourthLine = new Line(localA, localD);
             }
 
             lines.Add(firstLine);

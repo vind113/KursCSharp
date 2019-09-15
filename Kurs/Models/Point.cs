@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Kurs.Models
 {
-    class ShapePoint : IEquatable<ShapePoint>
+    class Point : IEquatable<Point>
     {
         public double X { get; }
         public double Y { get; }
 
-        public ShapePoint(double x, double y)
+        public Point(double x, double y)
         {
             this.X = x;
             this.Y = y;
@@ -22,7 +22,7 @@ namespace Kurs.Models
             return $"[{X}, {Y}]";
         }
 
-        public bool Equals(ShapePoint other)
+        public bool Equals(Point other)
         {
             return X == other.X && Y == other.Y;
         }

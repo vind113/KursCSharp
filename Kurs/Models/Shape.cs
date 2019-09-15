@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kurs.Models
 {
     abstract class AbstractShape
     {
-        protected readonly List<ShapeLine> lines = new List<ShapeLine>();
+        protected readonly List<Line> lines = new List<Line>();
 
-        public ShapeColors Color { get; set; }
+        public Colors Color { get; set; }
         public double Perimeter => lines.Sum(line => line.Length);
 
-        public ReadOnlyCollection<ShapeLine> Lines => new ReadOnlyCollection<ShapeLine>(lines);
+        public ReadOnlyCollection<Line> Lines => new ReadOnlyCollection<Line>(lines);
 
-        public AbstractShape(ShapeColors color)
+        public AbstractShape(Colors color)
         {
             this.Color = color;
         }

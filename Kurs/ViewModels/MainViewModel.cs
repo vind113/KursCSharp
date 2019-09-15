@@ -12,10 +12,11 @@ namespace Kurs.ViewModels
 {
     class MainViewModel : INotifyPropertyChanged
     {
+        private const string dataFilePath = @"E:\Other\Новая папка\kurs\Debug\f.txt";
         private readonly List<AbstractShape> shapes = new List<AbstractShape>();
 
-        public List<ShapeLineViewModel> Lines => shapes
-            .SelectMany(shape => shape.Lines.Select(line => new ShapeLineViewModel(line, shape.Color)))
+        public List<LineViewModel> Lines => shapes
+            .SelectMany(shape => shape.Lines.Select(line => new LineViewModel(line, shape.Color)))
             .ToList();
 
         public ICommand InitCommand { get; }
@@ -33,25 +34,25 @@ namespace Kurs.ViewModels
             InitCommand = new Command(() =>
             {
                 shapes.Clear();
-                FileDataReader.ReadDataFile(@"E:\Other\Новая папка\kurs\Debug\f.txt")
+                FileDataReader.ReadDataFile(dataFilePath)
                     .Select(line => DataParser.ParseDataLine(line))
                     .ToList()
                     .ForEach(data =>
                     {
                         if (data.Count == 6)
                         {
-                            ShapePoint a = new ShapePoint(data[0], data[1]);
-                            ShapePoint b = new ShapePoint(data[2], data[3]);
-                            ShapePoint c = new ShapePoint(data[4], data[5]);
+                            Models.Point a = new Models.Point(data[0], data[1]);
+                            Models.Point b = new Models.Point(data[2], data[3]);
+                            Models.Point c = new Models.Point(data[4], data[5]);
 
                             shapes.Add(new Triangle(a, b, c));
                         }
                         else if (data.Count == 8)
                         {
-                            ShapePoint a = new ShapePoint(data[0], data[1]);
-                            ShapePoint b = new ShapePoint(data[2], data[3]);
-                            ShapePoint c = new ShapePoint(data[4], data[5]);
-                            ShapePoint d = new ShapePoint(data[6], data[7]);
+                            Models.Point a = new Models.Point(data[0], data[1]);
+                            Models.Point b = new Models.Point(data[2], data[3]);
+                            Models.Point c = new Models.Point(data[4], data[5]);
+                            Models.Point d = new Models.Point(data[6], data[7]);
 
                             shapes.Add(new Quadrilateral(a, b, c, d));
                         }
@@ -65,8 +66,6 @@ namespace Kurs.ViewModels
 
             ColorDrawCommand = new Command(() =>
             {
-                //mainCanvas.Children.Clear();
-
                 double largestQuadPerimeter = shapes
                     .FindAll(shape => shape is Quadrilateral)
                     .OrderByDescending(quad => quad.Perimeter)
@@ -76,13 +75,13 @@ namespace Kurs.ViewModels
                     .FindAll(shape => shape is Triangle && shape.Perimeter < largestQuadPerimeter / 2)
                     .Cast<Triangle>().ToList();
 
-                halfPerimeterTriangles.ForEach(triangle => triangle.Color = ShapeColors.Blue);
+                halfPerimeterTriangles.ForEach(triangle => triangle.Color = Colors.Blue);
 
                 List<Triangle> twoLargestTriangles = halfPerimeterTriangles
                     .OrderByDescending(triangle => triangle.Perimeter)
                     .Take(2).ToList();
 
-                twoLargestTriangles.ForEach(triangle => triangle.Color = ShapeColors.Green);
+                twoLargestTriangles.ForEach(triangle => triangle.Color = Colors.Green);
                 if (twoLargestTriangles.Count == 2)
                 {
                     twoLargestIntersect = twoLargestTriangles[0].Intersects(twoLargestTriangles[1]);

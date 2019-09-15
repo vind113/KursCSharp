@@ -8,11 +8,11 @@ namespace Kurs.Models
 {
     class Triangle : AbstractShape
     {
-        public Triangle(ShapePoint a, ShapePoint b, ShapePoint c) : base(ShapeColors.Black)
+        public Triangle(Point a, Point b, Point c) : base(Colors.Black)
         { 
-            lines.Add(new ShapeLine(a, b));
-            lines.Add(new ShapeLine(b, c));
-            lines.Add(new ShapeLine(c, a));
+            lines.Add(new Line(a, b));
+            lines.Add(new Line(b, c));
+            lines.Add(new Line(c, a));
         }
     }
 }

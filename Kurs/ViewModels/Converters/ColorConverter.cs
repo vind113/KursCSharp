@@ -1,5 +1,4 @@
-﻿using Kurs.Models;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -10,17 +9,17 @@ namespace Kurs.ViewModels.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is ShapeColors color)
+            if (value is Models.Colors color)
             {
                 switch (color)
                 {
-                    case ShapeColors.Red:
+                    case Models.Colors.Red:
                         return Brushes.Red;
-                    case ShapeColors.Green:
+                    case Models.Colors.Green:
                         return Brushes.Green;
-                    case ShapeColors.Blue:
+                    case Models.Colors.Blue:
                         return Brushes.Blue;
-                    case ShapeColors.Black:
+                    case Models.Colors.Black:
                         return Brushes.Black;
                 }
             }
